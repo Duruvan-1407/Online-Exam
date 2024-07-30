@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Online Exam</title>
+    <style>
+        @font-face {
+            font-family: style1;
+            src: url('HeadlinerNo.45.ttf')format('TrueType');
+        }
+
+        body {
+            background-image: url("exam9.jpg");
+            background-size: cover;
+        }
+
+        .home {
+            border-radius: 2%;
+            border: transparent;
+            height: 22em;
+            width: 35em;
+            margin-left: 10em;
+            margin-top: 4em;
+            box-shadow: 0 0 10px black, 0 0 20px black;
+            background: transparent;
+            color: white;
+        }
+
+        .heading {
+            font-size: 80px;
+            margin-left: 2.8em;
+            font-family: style1;
+            color: white;
+        }
+
+        .redio_plan {
+            padding: 10px;
+            padding-left: 4em;
+            font-family: 'poppinns', sans-serif;
+        }
+
+        .redio_plan1 {
+            padding-top: 30px;
+            padding-left: 2em;
+            font-family: 'poppinns', sans-serif;
+        }
+
+        .plan1 {
+            font-size: 25px;
+            margin-top: 20px;
+        }
+
+        .plan2 {
+            font-size: 20px;
+        }
+
+        .plan3 {
+            font-size: 20px;
+        }
+
+        .plan4 {
+            font-size: 20px;
+        }
+
+        .plan5 {
+            font-size: 20px;
+        }
+
+        .back_btn {
+            padding: 5px 15px 5px 15px;
+            margin-left: 2em;
+            margin-top: 2em;
+            cursor: pointer;
+            border: none;
+            font-size: 15px;
+        }
+
+        .back_btn:hover{
+            background-color: blueviolet;
+        }
+
+        .next_btn {
+            padding: 5px 15px 5px 15px;
+            margin-left: 1em;
+            cursor: pointer;
+            border: none;
+            font-size: 15px;
+        }
+
+        .next_btn:hover{
+            background-color: green;
+        }
+
+        .submit_btn {
+            padding: 5px 15px 5px 15px;
+            margin-left: 22em;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <label class="heading">Online Examination</label>
+    <form class="home" name="form1" action="onlineexam3.html" onsubmit=" return display()">
+        <div class="redio_plan1">
+            <label id="questionlbl" class="plan1"></label><br>
+        </div>
+        <div class="redio_plan">
+            <input type="radio" value="a" onclick="viewtest()" name="radiobutton" id="a">
+            <label for="a" class="plan2" id="optionA">OptionA</label>
+        </div>
+        <div class="redio_plan">
+            <input type="radio" value="b" onclick="viewtest()" name="radiobutton" id="b">
+            <label for="b" class="plan3" id="optionB">OptionB</label>
+        </div>
+        <div class="redio_plan">
+            <input type="radio" value="c" onclick="viewtest()" name="radiobutton" id="c">
+            <label for="c" class="plan4" id="optionC">OptionC</label>
+        </div>
+        <div class="redio_plan">
+            <input type="radio" value="d" onclick="viewtest()" name="radiobutton" id="d">
+            <label for="d" class="plan5" id="optionD">OptionD</label>
+        </div>
+
+        <button id="bck" type="button" class="back_btn" onclick="back()">Back</button>
+        <button id="nxt" type="button" class="next_btn" onclick="next()">Next</button>
+        <button id="submit_view" type="submit" class="submit_btn" style="visibility: hidden;" onclick="submit()">submit</button>
+    </form>
+
+</body>
+
+</html>
+<script>
+    var question = [
+        {
+            "question": "1.What does HTML stands for?",
+            "a": "Hyperline and test Markup language",
+            "b": "Home tool Markup language",
+            "c": "Hyper text Markup language",
+            "d": "Hyper Markup language",
+            "correct": "c",
+            "select": "",
+        },
+
+        {
+            "question": "2.Who is making the web standards?",
+            "a": "Microsoft",
+            "b": "Google",
+            "c": "Mozila",
+            "d": "The world wide web consortium",
+            "correct": "d",
+            "select": "",
+        },
+
+        {
+            "question": "3.Who is father of HTML?",
+            "a": "Rasmus lerdors",
+            "b": "Tim Berners-Lee",
+            "c": "Brendan Eich",
+            "d": "Sergey Brin",
+            "correct": "b",
+            "select": "",
+        },
+
+        {
+            "question": "4.What is CSS?",
+            "a": "Cascading Style Sheets",
+            "b": "Style Sheet",
+            "c": "Case Sheet",
+            "d": "Case Style Sheet",
+            "correct": "a",
+            "select": "",
+        },
+
+        {
+            "question": "5.Who is father of Javascript?",
+            "a": "Rasmus lerdors",
+            "b": "Tim Berners-Lee",
+            "c": "Brendan Eich",
+            "d": "Sergey Brin",
+            "correct": "c",
+            "select": "",
+        },
+
+    ]
+    console.log(question)
+    document.getElementById('questionlbl').innerHTML = question[0].question
+    document.getElementById('optionA').innerHTML = question[0].a
+    document.getElementById('optionB').innerHTML = question[0].b
+    document.getElementById('optionC').innerHTML = question[0].c
+    document.getElementById('optionD').innerHTML = question[0].d
+
+    var index = 0;
+
+    function viewtest() {
+        var data = form1.radiobutton.value
+        question[index].select = data
+        console.log(question)
+    }
+
+    function next() {
+        if (question[index].select != "") {
+            if (index <= 4) {
+                if (index < 4) {
+                    index++;
+                }
+                // console.log(index)
+                document.getElementById('questionlbl').innerHTML = question[index].question
+                document.getElementById('optionA').innerHTML = question[index].a
+                document.getElementById('optionB').innerHTML = question[index].b
+                document.getElementById('optionC').innerHTML = question[index].c
+                document.getElementById('optionD').innerHTML = question[index].d
+            }
+
+            if (index == 4) {
+                // document.getElementById('nxt').disabled = true;
+                document.getElementById('submit_view').style = "visibility:visible"
+            }
+
+            document.getElementById('a').checked = false;
+            document.getElementById('b').checked = false;
+            document.getElementById('c').checked = false;
+            document.getElementById('d').checked = false;
+
+            var radio = question[index].select
+            // alert(radio)
+            if (radio != "") {
+                document.getElementById(radio).checked = true;
+            }
+        }
+        
+    }
+
+    function back() {
+        if (index > 0) {
+            index--;
+        }
+        // console.log(index)
+        document.getElementById('questionlbl').innerHTML = question[index].question
+        document.getElementById('optionA').innerHTML = question[index].a
+        document.getElementById('optionB').innerHTML = question[index].b
+        document.getElementById('optionC').innerHTML = question[index].c
+        document.getElementById('optionD').innerHTML = question[index].d
+
+        var id = question[index].select
+        // alert(id)
+        if (id != "") {
+            document.getElementById(id).checked = true;
+        }
+
+        if (index == 0) {
+            document.getElementById('bck').disabled = true;
+        }
+    }
+
+    var marks = 0;
+
+    function display() {
+        for (I = 0; I <= 4; I++) {
+            if (question[I].select == question[I].correct) {
+                marks++;
+            }
+        }
+        localStorage.setItem('score', marks) 
+    }
+    
+</script>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Online Exam</title>
+        <style>
+            body{
+                background-image: url(exam6.jpg);
+                background-size: cover;
+            }
+            @font-face {
+                font-family: 'newstyle';
+                src: url('FunSized.ttf')format('TrueType');
+            }
+            .plan2{
+                margin-top: 1em;
+                margin-bottom: 1em;
+                margin-left: 2em;
+                font-family: 'newstyle';
+                font-size: 4em;
+                color: white;
+            }
+            .plan3{
+                margin-left: 7em;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 1.5em;
+                color: white;
+            }
+            .plan4{
+                margin-left: 7em;
+                margin-top: -3;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 1.5em;
+                color: white;
+            }
+            .plan5{
+                margin-left: 24em;
+                margin-top: 1.1em;
+                padding: 5px 15px 5px 15px;
+                border-radius: 0.5em;
+                border: transparent;
+                font-size: 18px;
+                background-color: green;
+                color: white;    
+            }
+            .input1{
+                width: 25em;
+                height: 3em;
+                border-radius: 0.5em;
+                border: transparent;
+                outline: none;
+                margin-bottom: 0.5em;
+            }
+            .input2{
+                width: 25em;
+                height: 3em;
+                border-radius: 0.5em;
+                border: transparent;
+                outline: none;
+            }
+            .error1{
+                font-size: 15px;
+                margin-top: -1em;
+            }
+            .error2{
+                font-size: 15px;
+                margin-top: -1em;
+            }
+        </style>
+    </head>
+    <body>
+        <form action="onlineexam2.html" id="myform" onsubmit="return login()">
+            <div>
+                <div class="plan2">
+                    <label>ONLINE EXAM</label>
+                </div>
+                <div class="plan3">
+                    <label>UserName</label><br>
+                    <input type="text" placeholder="User Name" class="input1" id="name_error" name="uname" oninput="username('name_error','usererror','msg')"/>
+                    <p id="usererror" class="error1"></p>
+                </div>
+                <div class="plan4">
+                    <label>Password</label><br>
+                    <input type="password" maxlength="5" placeholder="Password" class="input2" id="password_error" name="passwordcheck" oninput="password('password_error','passerror','msg')"/>
+                    <p id="passerror" class="error2"></p>
+                </div>
+                <div>
+                    <input class="plan5" type="submit" value="Login" />
+                </div>
+            </div>
+        </form>
+    </body>
+</html>
+<script>
+function username(namedetail,errordetail,errmsg){
+    var namevalue=document.getElementById(namedetail)
+    var nameid=namevalue.value;
+    var namelength=nameid.length;
+    if(namelength > 2 && nameid!=""){
+        document.getElementById(errordetail).style="display:none";
+    }
+    else{
+        document.getElementById(errordetail).style="color:red";
+        document.getElementById(errordetail).innerHTML=errmsg="<br>*Please Enter The UserName"
+
+    }
+}
+function password(selectpassword,showpassword,passwordmsg){
+    var passwordvalue=document.getElementById(selectpassword)
+    var passwordvalueid=passwordvalue.value;
+    var passwordlength=passwordvalueid.length;
+    if(passwordlength > 4 && passwordvalueid!=""){
+        document.getElementById(showpassword).style="display:none"
+    }
+    else{
+        document.getElementById(showpassword).style="color:red"
+        document.getElementById(showpassword).innerHTML=passwordmsg="<br>*Please Enter The  Password";
+    }
+}
+function login(){
+    display()
+    var a=document.getElementById("name_error").value
+    var aid=a.length
+    if(aid<=4){
+        return false
+    }
+    var b=document.getElementById("password_error").value
+    var bid=b.length
+    if(bid<=4){
+        return false
+    }
+}
+function display(){
+    var name=document.getElementById('name_error').value
+    localStorage.setItem("student",name)
+}
+</script>
